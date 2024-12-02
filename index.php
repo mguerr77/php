@@ -4,6 +4,7 @@
   </head>
   <body>
     <?php echo '<p>Hello mundo</p>';
+    
     $numA=8;
     echo "El valor de la variable al asignarle valor inicial es:" , $numA;
     echo "<br>";
