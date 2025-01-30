@@ -1,21 +1,29 @@
-<html>
-  <head>
-    <title>PHP Test</title>
-  </head>
-  <body>
-    <?php echo '<p>Hello mundo</p>';
-    
-    $numA=8;
-    echo "El valor de la variable al asignarle valor inicial es:" , $numA;
-    echo "<br>";
-    echo "Hago un pre incremento:" , ++$numA;
-    echo "<br>";
-    echo "después del preincremento:" , $numA;
-    echo "<br>";
-    echo "hago un post incremento" , $numA++;
-    echo "<br>";
-    echo "después del post incremento:" , $numA;
-    echo "<br>";
-    ?>
+<?php
+    //phpinfo();
+    $servername = "192.168.192.115";
+    $username = "usuario";
+    $password = "Estech_2024";
+    $dbname = "prueba";
 
-</html>
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT id, nombre, apellidos, telefono FROM usuarios";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      echo "<table><tr><th>ID</th><th>Nombre</th><th>apellidos</th><th>Telefono</th></tr>";
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        echo "<tr><td>".$row["id"]."</td><td>".$row["nombre"]." ".$row["apellidos"]."</td><td>".$row["telefono"]."</td></tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "0 results";
+    }
+    $conn->close();
+?>
